@@ -15,4 +15,6 @@
         completions."
     </string>
     <string name="action_settings">Settings</string>
+    <string name="title_lblock_list">LBlocks</string>
+    <string name="title_lblock_detail">LBlock Detail</string>
 </resources>

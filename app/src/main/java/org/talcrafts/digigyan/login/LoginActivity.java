@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 
 import org.talcrafts.digigyan.R;
 import org.talcrafts.digigyan.activity.BaseAcitivity;
+import org.talcrafts.digigyan.explorer.LBlockListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,6 +142,9 @@ public class LoginActivity extends BaseAcitivity implements LoaderCallbacks<Curs
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
+
+        Intent intent = new Intent(this, LBlockListActivity.class);
+        startActivity(intent);
     }
 
     private boolean isEmailValid(String email) {

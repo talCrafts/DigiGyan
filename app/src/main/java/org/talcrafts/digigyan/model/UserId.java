@@ -7,9 +7,6 @@ package org.talcrafts.digigyan.model;
 public class UserId {
     private final int id;
 
-    public UserId(){
-    }
-
     public UserId(int id) {
         this.id = id;
     }
