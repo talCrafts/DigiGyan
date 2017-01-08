@@ -100,6 +100,7 @@ public class LBlockListActivity extends BaseAcitivity {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
                         arguments.putString(LBlockDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+
                         LBlockDetailFragment fragment = new LBlockDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -109,7 +110,7 @@ public class LBlockListActivity extends BaseAcitivity {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, LBlockDetailActivity.class);
                         intent.putExtra(LBlockDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-
+                        intent.putExtra("QR_STRING",holder.mItem.content);
                         context.startActivity(intent);
                     }
                 }

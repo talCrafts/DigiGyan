@@ -1,4 +1,4 @@
-package org.talcrafts.digigyan.node;
+package org.talcrafts.digigyan;
 
 /**
  * Created by ashwaghm on 04-Jan-17.

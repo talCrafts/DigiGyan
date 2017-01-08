@@ -1,5 +1,6 @@
 package org.talcrafts.digigyan.explorer;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 
 import org.talcrafts.digigyan.R;
 import org.talcrafts.digigyan.activity.BaseAcitivity;
+import org.talcrafts.digigyan.sharing.QRSendActivity;
 
 /**
  * An activity representing a single LBlock detail screen. This
@@ -33,8 +35,10 @@ public class LBlockDetailActivity extends BaseAcitivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(LBlockDetailActivity.this,QRSendActivity.class);
+                String qr_string = getIntent().getStringExtra("QR_STRING");
+                intent.putExtra("QR_STRING",qr_string);
+                startActivity(intent);
             }
         });
 

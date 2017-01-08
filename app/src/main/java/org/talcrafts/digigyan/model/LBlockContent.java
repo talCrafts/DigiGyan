@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -26,6 +27,7 @@ public class LBlockContent {
     public static final Map<String, LBlock> ITEM_MAP = new HashMap<String, LBlock>();
 
     private static final int COUNT = 25;
+    private static AtomicInteger item_no=new AtomicInteger(0);
 
     static {
 
@@ -55,7 +57,7 @@ public class LBlockContent {
     }
 
     private static LBlock createLBlock(String fileName) {
-        return new LBlock(String.valueOf(2), "LBlock: " + fileName, makeLBlockDetails(fileName));
+        return new LBlock(String.valueOf(item_no.incrementAndGet()), "LBlock: " + fileName, makeLBlockDetails(fileName));
     }
 
 

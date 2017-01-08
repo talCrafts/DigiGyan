@@ -26,7 +26,8 @@ public class QRSendActivity extends BaseAcitivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrsend);
         ImageView imageView = (ImageView) findViewById(R.id.qrCode);
-        imageView.setImageBitmap(encode("Anaya Ashish"));
+        String qr_string = getIntent().getStringExtra("QR_STRING");
+        imageView.setImageBitmap(encode(qr_string));
     }
 
     private Bitmap encode(String data) {

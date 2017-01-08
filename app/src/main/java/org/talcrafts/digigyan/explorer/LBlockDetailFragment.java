@@ -1,6 +1,7 @@
 package org.talcrafts.digigyan.explorer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import org.talcrafts.digigyan.R;
 import org.talcrafts.digigyan.model.LBlockContent;
+import org.talcrafts.digigyan.sharing.QRSendActivity;
 
 /**
  * A fragment representing a single LBlock detail screen.
@@ -59,12 +61,10 @@ public class LBlockDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.lblock_detail, container, false);
-
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.lblock_detail)).setText(mItem.details);
         }
-
         return rootView;
     }
 }
