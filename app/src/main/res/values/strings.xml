@@ -17,4 +17,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_lblock_list">LBlocks</string>
     <string name="title_lblock_detail">LBlock Detail</string>
+    <string name="title_wifiendpoint_list">WifiEndPoints</string>
+    <string name="title_wifiendpoint_detail">WifiEndPoint Detail</string>
+    <string name="title_bluetoothendpoint_list">BluetoothEndPoints</string>
+    <string name="title_bluetoothendpoint_detail">BluetoothEndPoint Detail</string>
 </resources>

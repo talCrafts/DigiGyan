@@ -3,6 +3,8 @@
           package="org.talcrafts.digigyan">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -44,6 +46,34 @@
         <activity android:name=".sharing.QRReceiveActivity">
         </activity>
         <activity android:name=".sharing.QRSendActivity">
+        </activity>
+        <activity
+            android:name=".networking.wifi.WifiEndPointListActivity"
+            android:label="@string/title_wifiendpoint_list"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".networking.wifi.WifiEndPointDetailActivity"
+            android:label="@string/title_wifiendpoint_detail"
+            android:parentActivityName=".networking.wifi.WifiEndPointListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.talcrafts.digigyan.networking.wifi.WifiEndPointListActivity"/>
+        </activity>
+        <activity
+            android:name=".networking.bluetooth.BluetoothEndPointListActivity"
+            android:label="@string/title_bluetoothendpoint_list"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".networking.bluetooth.BluetoothEndPointDetailActivity"
+            android:label="@string/title_bluetoothendpoint_detail"
+            android:parentActivityName=".networking.bluetooth.BluetoothEndPointListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.talcrafts.digigyan.networking.bluetooth.BluetoothEndPointListActivity"/>
         </activity>
     </application>
 

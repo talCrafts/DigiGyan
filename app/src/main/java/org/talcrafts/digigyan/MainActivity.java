@@ -1,12 +1,17 @@
 package org.talcrafts.digigyan;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import org.talcrafts.digigyan.activity.BaseAcitivity;
 import org.talcrafts.digigyan.login.LoginActivity;
+import org.talcrafts.digigyan.networking.GenericBroadCastReceiver;
 
 public class MainActivity extends BaseAcitivity {
 
@@ -14,6 +19,21 @@ public class MainActivity extends BaseAcitivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        GenericBroadCastReceiver receiver =new GenericBroadCastReceiver();
+
+        IntentFilter wifiIntentFilters = new IntentFilter();
+        wifiIntentFilters.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
+        wifiIntentFilters.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+        wifiIntentFilters.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        registerReceiver(receiver, wifiIntentFilters);
+
+        IntentFilter btIntentFilters = new IntentFilter();
+        btIntentFilters.addAction(BluetoothDevice.ACTION_FOUND);
+        btIntentFilters.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        registerReceiver(receiver,btIntentFilters);
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
