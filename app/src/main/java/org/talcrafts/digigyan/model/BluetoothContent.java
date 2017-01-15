@@ -17,18 +17,22 @@ import java.util.Set;
  */
 public class BluetoothContent {
 
-
-    final BluetoothAdapter mAdapter;
+    final BluetoothAdapter mBtAdapter;
 
     public static final List<BLEndpoint> ITEMS = new ArrayList<BLEndpoint>();
     public static final Map<String, BLEndpoint> ITEM_MAP = new HashMap<String, BLEndpoint>();
 
     public BluetoothContent(BluetoothAdapter btAdapter){
-        this.mAdapter=btAdapter;
+        this.mBtAdapter=btAdapter;
+        //TODO better place to initialize
+        if (mBtAdapter.isDiscovering()) {
+            mBtAdapter.cancelDiscovery();
+        }
+        mBtAdapter.startDiscovery();
     }
 
     public void scan() {
-        Set<BluetoothDevice> devices = mAdapter.getBondedDevices();
+        Set<BluetoothDevice> devices = mBtAdapter.getBondedDevices();
         for (BluetoothDevice device : devices)
             addItem(device);
     }

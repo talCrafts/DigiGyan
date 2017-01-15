@@ -2,26 +2,50 @@ package org.talcrafts.digigyan;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import org.talcrafts.digigyan.activity.BaseAcitivity;
 import org.talcrafts.digigyan.login.LoginActivity;
 import org.talcrafts.digigyan.networking.GenericBroadCastReceiver;
+import org.talcrafts.digigyan.networking.bluetooth.BluetoothEndPointListActivity;
+import org.talcrafts.digigyan.networking.wifi.WifiEndPointListActivity;
 
 public class MainActivity extends BaseAcitivity {
+
+    private Button mBluetoothButton;
+    private Button mWifiButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mBluetoothButton=(Button) findViewById(R.id.bluetoothButton);
+        mBluetoothButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, BluetoothEndPointListActivity.class);
+                startActivity(intent);
+            }
+        });
+        mWifiButton=(Button)findViewById(R.id.wifiButton);
+        mWifiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, WifiEndPointListActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
-        GenericBroadCastReceiver receiver =new GenericBroadCastReceiver();
+        GenericBroadCastReceiver receiver =new GenericBroadCastReceiver((WifiManager) getSystemService(Context.WIFI_SERVICE),BluetoothAdapter.getDefaultAdapter());
 
         IntentFilter wifiIntentFilters = new IntentFilter();
         wifiIntentFilters.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
@@ -34,8 +58,8 @@ public class MainActivity extends BaseAcitivity {
         btIntentFilters.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         registerReceiver(receiver,btIntentFilters);
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, LoginActivity.class);
+//        startActivity(intent);
     }
 
     @Override

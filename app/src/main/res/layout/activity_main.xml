@@ -11,7 +11,22 @@
     tools:context="org.talcrafts.digigyan.MainActivity">
 
     <TextView
+        android:text="Home Page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/textView"/>
+
+    <Button
+        android:text="Bluetooth Neighbours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:id="@+id/bluetoothButton"/>
+
+    <Button
+        android:text="Wifi Neighbours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bluetoothButton"
+        android:id="@+id/wifiButton"/>
 </RelativeLayout>

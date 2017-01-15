@@ -14,8 +14,13 @@ import org.talcrafts.digigyan.model.WifiContent;
  */
 
 public class GenericBroadCastReceiver extends BroadcastReceiver {
-    BluetoothContent blueTooth;
-    WifiContent wifi;
+    final BluetoothContent blueTooth;
+    final WifiContent wifi;
+
+    public GenericBroadCastReceiver(WifiManager wifi, BluetoothAdapter blueTooth) {
+        this.blueTooth = new BluetoothContent(blueTooth);
+        this.wifi = new WifiContent(wifi);
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -23,7 +28,7 @@ public class GenericBroadCastReceiver extends BroadcastReceiver {
         if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(action)) {
             wifi.scan();
         }
-        if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
+        if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
             blueTooth.scan();
         }
     }

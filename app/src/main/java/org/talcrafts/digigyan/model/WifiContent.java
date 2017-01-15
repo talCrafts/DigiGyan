@@ -22,8 +22,9 @@ public class WifiContent {
     public static final List<WifiEndpoint> ITEMS = new ArrayList<WifiEndpoint>();
     public static final Map<String, WifiEndpoint> ITEM_MAP = new HashMap<String, WifiEndpoint>();
 
-    WifiContent(WifiManager wifiManager) {
+    public WifiContent(WifiManager wifiManager) {
         this.mWifiManager = wifiManager;
+        wifiManager.startScan(); //TODO better place to initialize
     }
 
 
