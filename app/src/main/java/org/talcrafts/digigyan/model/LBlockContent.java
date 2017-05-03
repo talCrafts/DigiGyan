@@ -82,15 +82,15 @@ public class LBlockContent {
      * A dummy item representing a piece of content.
      */
     public static class LBlock {
-        public final String id;
         public final String content;
         public final String details;
-
         public LBlock(String id, String content, String details) {
             this.id = id;
             this.content = content;
             this.details = details;
         }
+
+        public final String id;
 
         @Override
         public String toString() {

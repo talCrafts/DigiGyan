@@ -1,6 +1,7 @@
 package org.talcrafts.digigyan.networking;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,16 +21,22 @@ public class GenericBroadCastReceiver extends BroadcastReceiver {
     public GenericBroadCastReceiver(WifiManager wifi, BluetoothAdapter blueTooth) {
         this.blueTooth = new BluetoothContent(blueTooth);
         this.wifi = new WifiContent(wifi);
+        this.blueTooth.startScan();
+        this.wifi.startScan();
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(action)) {
-            wifi.scan();
+            wifi.syncResult();
         }
         if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-            blueTooth.scan();
+            blueTooth.syncResult();
+        }
+        if(BluetoothDevice.ACTION_FOUND.equals(action)){
+            BluetoothDevice device = (BluetoothDevice) intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+            blueTooth.addItem(device);
         }
     }
 }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import org.talcrafts.digigyan.R;
 
 import org.talcrafts.digigyan.model.BluetoothContent;
+import org.talcrafts.digigyan.model.WifiContent;
 
 import java.util.List;
 
@@ -49,7 +50,8 @@ public class WifiEndPointListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                WifiContent.getInstance().startScan();
+                Snackbar.make(view, "Searching WIFI devices around ...", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -68,15 +70,15 @@ public class WifiEndPointListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(BluetoothContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(WifiContent.ITEMS));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<BluetoothContent.BLEndpoint> mValues;
+        private final List<WifiContent.WifiEndpoint> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<BluetoothContent.BLEndpoint> items) {
+        public SimpleItemRecyclerViewAdapter(List<WifiContent.WifiEndpoint> items) {
             mValues = items;
         }
 
@@ -124,7 +126,7 @@ public class WifiEndPointListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public BluetoothContent.BLEndpoint mItem;
+            public WifiContent.WifiEndpoint mItem;
 
             public ViewHolder(View view) {
                 super(view);

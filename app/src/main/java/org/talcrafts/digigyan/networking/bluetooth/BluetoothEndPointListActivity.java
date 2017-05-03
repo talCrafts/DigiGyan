@@ -4,19 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.talcrafts.digigyan.R;
-
-import org.talcrafts.digigyan.model.WifiContent;
+import org.talcrafts.digigyan.model.BluetoothContent;
+import org.talcrafts.digigyan.model.EndPoint;
 
 import java.util.List;
 
@@ -49,7 +49,8 @@ public class BluetoothEndPointListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                BluetoothContent.getInstance().startScan();
+                Snackbar.make(view, "Searching Bluetooth devices around ... ", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -68,15 +69,15 @@ public class BluetoothEndPointListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(WifiContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(BluetoothContent.getInstance().ITEMS));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<WifiContent.WifiEndpoint> mValues;
+        private final List<EndPoint> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<WifiContent.WifiEndpoint> items) {
+        public SimpleItemRecyclerViewAdapter(List<EndPoint> items) {
             mValues = items;
         }
 
@@ -89,7 +90,7 @@ public class BluetoothEndPointListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mItem = mValues.get(position);
+            holder.mItem = (BluetoothContent.BLEndpoint) mValues.get(position);
             holder.mIdView.setText(mValues.get(position).id);
             holder.mContentView.setText(mValues.get(position).content);
 
@@ -124,7 +125,7 @@ public class BluetoothEndPointListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public WifiContent.WifiEndpoint mItem;
+            public BluetoothContent.BLEndpoint mItem;
 
             public ViewHolder(View view) {
                 super(view);

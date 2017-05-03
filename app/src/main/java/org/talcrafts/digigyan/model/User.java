@@ -6,6 +6,8 @@ package org.talcrafts.digigyan.model;
 
 public class User {
 
+    public static final String COLUMN_ID = "id";
+    public static final String TABLE_NAME = "DGUser";
     private final UserId id;
 
     public User(UserId id) {

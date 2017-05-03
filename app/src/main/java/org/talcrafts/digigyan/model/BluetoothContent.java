@@ -15,32 +15,39 @@ import java.util.Set;
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class BluetoothContent {
+public class BluetoothContent extends EndPointContent {
 
     final BluetoothAdapter mBtAdapter;
 
-    public static final List<BLEndpoint> ITEMS = new ArrayList<BLEndpoint>();
-    public static final Map<String, BLEndpoint> ITEM_MAP = new HashMap<String, BLEndpoint>();
+    private static BluetoothContent ourInstance;
 
-    public BluetoothContent(BluetoothAdapter btAdapter){
-        this.mBtAdapter=btAdapter;
-        //TODO better place to initialize
+    public static BluetoothContent getInstance() {
+        return ourInstance;
+    }
+
+    public void startScan() {
         if (mBtAdapter.isDiscovering()) {
             mBtAdapter.cancelDiscovery();
         }
         mBtAdapter.startDiscovery();
     }
 
-    public void scan() {
+    public void syncResult() {
+        ITEMS.clear();
+        ITEM_MAP.clear();
         Set<BluetoothDevice> devices = mBtAdapter.getBondedDevices();
         for (BluetoothDevice device : devices)
             addItem(device);
     }
 
-    private static void addItem(BluetoothDevice device) {
+    public BluetoothContent(BluetoothAdapter btAdapter) {
+        this.mBtAdapter = btAdapter;
+        ourInstance = this;
+    }
+
+    public void addItem(BluetoothDevice device) {
         BLEndpoint item = new BLEndpoint(device.getAddress(), device.getName(), device.getName());
-        ITEMS.add(item);
-        ITEM_MAP.put(item.id,item);
+        addItem(item);
     }
 
 
@@ -48,14 +55,12 @@ public class BluetoothContent {
      * A dummy item representing a piece of content.
      */
     public static class BLEndpoint extends EndPoint {
-        public final String id;
-        public final String content;
-        public final String details;
 
         public BLEndpoint(String id, String content, String details) {
-            this.id = id;
+            super(id);
             this.content = content;
             this.details = details;
+            this.type=this.getClass().getSimpleName();
         }
 
         @Override

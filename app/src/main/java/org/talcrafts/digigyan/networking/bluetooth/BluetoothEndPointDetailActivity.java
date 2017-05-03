@@ -12,6 +12,7 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 import org.talcrafts.digigyan.R;
+import org.talcrafts.digigyan.model.BluetoothContent;
 
 /**
  * An activity representing a single BluetoothEndPoint detail screen. This
@@ -32,7 +33,8 @@ public class BluetoothEndPointDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
+                BluetoothContent.getInstance().startScan();
+                Snackbar.make(view, "Refresh Blue Tooth Devices around..", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

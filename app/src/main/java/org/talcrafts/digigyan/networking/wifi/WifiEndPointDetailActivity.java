@@ -12,6 +12,7 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 import org.talcrafts.digigyan.R;
+import org.talcrafts.digigyan.model.WifiContent;
 
 /**
  * An activity representing a single WifiEndPoint detail screen. This
@@ -32,7 +33,7 @@ public class WifiEndPointDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Refresh Wifi Devices around..", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

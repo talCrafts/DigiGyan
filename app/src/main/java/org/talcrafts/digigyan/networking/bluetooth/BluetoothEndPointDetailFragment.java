@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.talcrafts.digigyan.R;
-import org.talcrafts.digigyan.model.WifiContent;
+import org.talcrafts.digigyan.model.BluetoothContent;
 
 /**
  * A fragment representing a single BluetoothEndPoint detail screen.
@@ -28,7 +28,8 @@ public class BluetoothEndPointDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private WifiContent.WifiEndpoint mItem;
+    private BluetoothContent.BLEndpoint mItem;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -45,7 +46,7 @@ public class BluetoothEndPointDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = WifiContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = (BluetoothContent.BLEndpoint) BluetoothContent.getInstance().ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);

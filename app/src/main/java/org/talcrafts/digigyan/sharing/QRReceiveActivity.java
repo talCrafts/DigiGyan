@@ -40,7 +40,7 @@ public class QRReceiveActivity extends BaseAcitivity implements ZXingScannerView
     public void handleResult(Result result) {
 //        TextView textView=(TextView)findViewById(R.id.question_text_view);
 //        textView.setText(result.getText());
-        Log.v("RE<", result.getText()); // Prints scan results
+        Log.v("RE<", result.getText()); // Prints syncResult results
         Log.v("RE<", result.getBarcodeFormat().toString());
     }
 }

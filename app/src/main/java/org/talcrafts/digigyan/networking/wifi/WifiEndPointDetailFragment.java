@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.talcrafts.digigyan.R;
-import org.talcrafts.digigyan.model.BluetoothContent;
+import org.talcrafts.digigyan.model.WifiContent;
 
 /**
  * A fragment representing a single WifiEndPoint detail screen.
@@ -28,7 +28,7 @@ public class WifiEndPointDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private BluetoothContent.BLEndpoint mItem;
+    private WifiContent.WifiEndpoint mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -45,7 +45,7 @@ public class WifiEndPointDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = BluetoothContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = WifiContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -64,7 +64,6 @@ public class WifiEndPointDetailFragment extends Fragment {
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.wifiendpoint_detail)).setText(mItem.details);
         }
-
         return rootView;
     }
 }
